@@ -31,6 +31,14 @@ class YahooBackupScraper:
     def __del__(self):
         self.br.quit()
 
+    def _create_profile_with_options(self):
+        # https://github.com/csaftoiu/yahoo-groups-backup/issues/41
+        from selenium import webdriver
+
+        fp = webdriver.FirefoxProfile()
+        fp.set_preference("devtools.jsonview.enabled",False)
+        return webdriver.Firefox(firefox_profile=fp)
+
     def _is_login_page(self):
         html = self.br.html
         eprint("Detecting the log-in page...")

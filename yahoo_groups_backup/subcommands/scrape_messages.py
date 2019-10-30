@@ -23,7 +23,6 @@ args_schema = schema.Schema({
     object: object,
 })
 
-
 def command(arguments):
     cli = pymongo.MongoClient(arguments['--mongo-host'], arguments['--mongo-port'])
     db = YahooBackupDB(cli, arguments['<group_name>'])
